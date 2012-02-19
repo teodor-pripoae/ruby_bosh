@@ -154,9 +154,9 @@ class RubyBOSH
 
     require "timeout"
     def deliver(xml)
-      Timeout.timeout(@timeout) do 
+      ::Timeout::timeout(@timeout) do
         send(xml)
-        recv(RestClient.post(@service_url, xml, @headers))
+        recv(RestClient.post(@service_url, xml, @headers))            
       end
     rescue ::Timeout::Error => e
       raise RubyBOSH::Timeout, e.message
